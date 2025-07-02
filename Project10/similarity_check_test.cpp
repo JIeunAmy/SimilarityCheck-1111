@@ -19,7 +19,7 @@ TEST(SimilarStingTest, LengthCheckZeroPoint) {
 	SimilarityChecker similarityChecker;
 
 	string input1 = "ABCD";
-	string input2 = "ABCDABCD";
+	string input2 = "ABCDABCDdfsdsfs";
 	double expected = 0;
 
 	EXPECT_EQ(expected, similarityChecker.getLengthPoint(input1, input2));
