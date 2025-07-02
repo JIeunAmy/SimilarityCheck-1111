@@ -5,32 +5,26 @@
 using namespace std;
 using namespace testing;
 
-TEST(SimilarStingTest, LengthCheckMaxPoint) {
+class SimilarityCheckerFixture :public Test
+{
+private:
 	SimilarityChecker similarityChecker;
 
-	string input1 = "ABCD";
-	string input2 = "ABCD";
-	double expected = 60;
+public:
+	void checkSimilarity(string input1, string input2, int expected)
+	{
+		EXPECT_EQ(expected, similarityChecker.getLengthPoint(input1, input2));
+	}
+};
 
-	EXPECT_EQ(expected, similarityChecker.getLengthPoint(input1, input2));
+TEST_F(SimilarityCheckerFixture, LengthCheckMaxPoint) {
+	checkSimilarity("ABDC", "ABCD", 60);
 }
 
-TEST(SimilarStingTest, LengthCheckZeroPoint) {
-	SimilarityChecker similarityChecker;
-
-	string input1 = "ABCD";
-	string input2 = "ABCDABCDdfsdsfs";
-	double expected = 0;
-
-	EXPECT_EQ(expected, similarityChecker.getLengthPoint(input1, input2));
+TEST_F(SimilarityCheckerFixture, LengthCheckZeroPoint) {
+	checkSimilarity("ABDC", "ABCDABCDdfsdsfs", 0);
 }
 
-TEST(SimilarStingTest, LengthCheckPartialPoint) {
-	SimilarityChecker similarityChecker;
-
-	string input1 = "ABCDEFGHIJ";
-	string input2 = "ABCDEFGHIJwoej";
-	double expected = 36;
-
-	EXPECT_EQ(expected, similarityChecker.getLengthPoint(input1, input2));
+TEST_F(SimilarityCheckerFixture, LengthCheckPartialPoint) {
+	checkSimilarity("ABCDEFGHIJ", "ABCDEFGHIJwoej", 36);
 }
