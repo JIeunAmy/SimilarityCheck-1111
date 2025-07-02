@@ -10,7 +10,7 @@ TEST(SimilarStingTest, LengthCheckMaxPoint) {
 
 	string input1 = "ABCD";
 	string input2 = "ABCD";
-	int expected = 60;
+	double expected = 60;
 
 	EXPECT_EQ(expected, similarityChecker.getLengthPoint(input1, input2));
 }
@@ -20,7 +20,17 @@ TEST(SimilarStingTest, LengthCheckZeroPoint) {
 
 	string input1 = "ABCD";
 	string input2 = "ABCDABCD";
-	int expected = 0;
+	double expected = 0;
+
+	EXPECT_EQ(expected, similarityChecker.getLengthPoint(input1, input2));
+}
+
+TEST(SimilarStingTest, LengthCheckPartialPoint) {
+	SimilarityChecker similarityChecker;
+
+	string input1 = "ABCDEFGHIJ";
+	string input2 = "ABCDEFGHIJwoej";
+	double expected = 36;
 
 	EXPECT_EQ(expected, similarityChecker.getLengthPoint(input1, input2));
 }
